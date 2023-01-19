@@ -12,6 +12,66 @@
 
 namespace App\Models\Base{
 /**
+ * Class Calendar
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property string $description
+ * @property Carbon $start_date
+ * @property string $date_type
+ * @property int $public
+ * @property string|null $private_description
+ * @property int $only_active_members
+ * @property int $only_admins
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereDateType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereOnlyActiveMembers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereOnlyAdmins($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar wherePrivateDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar wherePublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereUserId($value)
+ */
+	class Calendar extends \Eloquent {}
+}
+
+namespace App\Models\Base{
+/**
+ * Class CalendarCommitment
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $calendar_id
+ * @property int $status
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @package App\Models\Base
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereCalendarId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereUserId($value)
+ */
+	class CalendarCommitment extends \Eloquent {}
+}
+
+namespace App\Models\Base{
+/**
  * Class Cashbook
  *
  * @property int $id
@@ -47,6 +107,8 @@ namespace App\Models\Base{
  * @property int $accepted_by_user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property int $year
+ * @property int $month
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee newQuery()
@@ -54,8 +116,10 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereAcceptedByUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereMonth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereYear($value)
  */
 	class MonthlyFee extends \Eloquent {}
 }
@@ -88,6 +152,8 @@ namespace App\Models\Base{
  * @property int|null $phone_public
  * @property Carbon|null $start_membership
  * @property Carbon|null $end_membership
+ * @property string|null $beername
+ * @property int|null $no_monthly_fee
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
@@ -97,12 +163,14 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrZip($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBeername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEndMembership($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNoMonthlyFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePermActivated($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePermAdmin($value)
@@ -118,6 +186,64 @@ namespace App\Models\Base{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
  */
 	class User extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Calendar
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property string $description
+ * @property \Illuminate\Support\Carbon $start_date
+ * @property string $date_type
+ * @property int $public
+ * @property string|null $private_description
+ * @property int $only_active_members
+ * @property int $only_admins
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereDateType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereOnlyActiveMembers($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereOnlyAdmins($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar wherePrivateDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar wherePublic($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereStartDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Calendar whereUserId($value)
+ */
+	class Calendar extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\CalendarCommitment
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $calendar_id
+ * @property int $status
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereCalendarId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|CalendarCommitment whereUserId($value)
+ */
+	class CalendarCommitment extends \Eloquent {}
 }
 
 namespace App\Models{
@@ -156,14 +282,18 @@ namespace App\Models{
  * @property int $accepted_by_user_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int $year
+ * @property int $month
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee query()
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereAcceptedByUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereMonth($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|MonthlyFee whereYear($value)
  */
 	class MonthlyFee extends \Eloquent {}
 }
@@ -196,6 +326,8 @@ namespace App\Models{
  * @property int|null $phone_public
  * @property string|null $start_membership
  * @property string|null $end_membership
+ * @property string|null $beername
+ * @property int|null $no_monthly_fee
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -209,12 +341,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrPublic($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrStreet($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrZip($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereBeername($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereEndMembership($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereNoMonthlyFee($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePermActivated($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePermAdmin($value)

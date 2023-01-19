@@ -36,6 +36,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $phone_public
  * @property Carbon|null $start_membership
  * @property Carbon|null $end_membership
+ * @property string|null $beername
+ * @property int|null $no_monthly_fee
  *
  * @package App\Models\Base
  */
@@ -51,7 +53,8 @@ class User extends Model
 		'perm_files' => 'int',
 		'perm_news' => 'int',
 		'adr_public' => 'int',
-		'phone_public' => 'int'
+		'phone_public' => 'int',
+		'no_monthly_fee' => 'int'
 	];
 
 	protected $dates = [

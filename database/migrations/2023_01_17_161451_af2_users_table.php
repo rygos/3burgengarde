@@ -41,7 +41,22 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
+            $table->dropColumn('perm_activated');
+            $table->dropColumn('perm_admin');
+            $table->dropColumn('perm_finance');
+            $table->dropColumn('perm_calendar');
+            $table->dropColumn('perm_files');
+            $table->dropColumn('perm_news');
+            $table->dropColumn('adr_street');
+            $table->dropColumn('adr_zip');
+            $table->dropColumn('adr_city');
+            $table->dropColumn('adr_country');
+            $table->dropColumn('adr_public');
+            $table->dropColumn('phone_home');
+            $table->dropColumn('phone_mobile');
+            $table->dropColumn('phone_public');
+            $table->dropColumn('start_membership');
+            $table->dropColumn('end_membership');
         });
     }
 };

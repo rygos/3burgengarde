@@ -17,6 +17,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $accepted_by_user_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property int $year
+ * @property int $month
  *
  * @package App\Models\Base
  */
@@ -26,6 +28,8 @@ class MonthlyFee extends Model
 
 	protected $casts = [
 		'user_id' => 'int',
-		'accepted_by_user_id' => 'int'
+		'accepted_by_user_id' => 'int',
+		'year' => 'int',
+		'month' => 'int'
 	];
 }
