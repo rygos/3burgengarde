@@ -29,11 +29,11 @@
                                                 {{ $item->start_date->format('d.m.Y H:i') }} Uhr
                                             </p>
                                             <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                {{ $item->description }}
+                                                {!! nl2br($item->description) !!}
                                             </p>
                                             @if($item->private_description)
                                                 <p class="text-sm text-red-500 truncate dark:text-red-400">
-                                                    Intern: {{ $item->private_description }}
+                                                    Intern: {!! nl2br($item->private_description) !!}
                                                 </p>
                                             @endif
                                         </div>
