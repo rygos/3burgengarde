@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Calendar;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use const http\Client\Curl\AUTH_ANY;
 
 class CalendarController extends Controller
 {
@@ -75,9 +76,10 @@ class CalendarController extends Controller
         $i->public = $request->get('public');
         $i->only_active_members = $request->get('only_active_members');
         $i->only_admins = $request->get('only_admins');
+        $i->user_id = \Auth::id();
         $i->save();
 
-        return redirect()->route('calendar.index');
+        return redirect()->route('calendar.index', Carbon::now()->year);
     }
 
 }
