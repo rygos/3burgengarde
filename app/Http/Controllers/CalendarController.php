@@ -58,15 +58,26 @@ class CalendarController extends Controller
         $i->only_admins = $request->get('only_admins');
         $i->save();
 
-        return redirect()->back();
+        return redirect()->route('calendar.view', $i->id);
     }
 
     public function add(){
-
+        return view('calendar.create');
     }
 
     public function store(Request $request){
+        $i = new Calendar;
+        $i->title = $request->get('title');
+        $i->start_date = $request->get('start_date');
+        $i->description = $request->get('description');
+        $i->private_description = $request->get('private_description');
+        $i->date_type = $request->get('date_type');
+        $i->public = $request->get('public');
+        $i->only_active_members = $request->get('only_active_members');
+        $i->only_admins = $request->get('only_admins');
+        $i->save();
 
+        return redirect()->route('calendar.index');
     }
 
 }

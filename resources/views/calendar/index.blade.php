@@ -10,6 +10,11 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     Termine {{ $year }}
+                    @if(Auth::user()->perm_calendar or Auth::user()->perm_admin)
+                        <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                            <a href="{{ route('calendar.add') }}"><x-heroicons::outline.plus /></a>
+                        </div>
+                    @endif
                     <div class="flow-root">
                         <ul role="list" class="divide-y">
                             @foreach(\App\Models\Calendar::orderBy('start_date')->limit(5)->get() as $item)
