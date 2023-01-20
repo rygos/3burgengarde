@@ -154,10 +154,12 @@ namespace App\Models\Base{
  * @property Carbon|null $end_membership
  * @property string|null $beername
  * @property int|null $no_monthly_fee
+ * @property int $active_member
  * @package App\Models\Base
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereActiveMember($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrPublic($value)
@@ -328,6 +330,7 @@ namespace App\Models{
  * @property string|null $end_membership
  * @property string|null $beername
  * @property int|null $no_monthly_fee
+ * @property int $active_member
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -336,6 +339,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereActiveMember($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrCity($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrCountry($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereAdrPublic($value)

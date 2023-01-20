@@ -38,6 +38,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon|null $end_membership
  * @property string|null $beername
  * @property int|null $no_monthly_fee
+ * @property int $active_member
  *
  * @package App\Models\Base
  */
@@ -54,7 +55,8 @@ class User extends Model
 		'perm_news' => 'int',
 		'adr_public' => 'int',
 		'phone_public' => 'int',
-		'no_monthly_fee' => 'int'
+		'no_monthly_fee' => 'int',
+		'active_member' => 'int'
 	];
 
 	protected $dates = [

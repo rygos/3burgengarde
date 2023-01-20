@@ -3,12 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Models\Calendar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
-    public function index(){
+    public function index($year = 'NULL'){
+        if($year == 'NULL'){
+            $year = Carbon::now()->year;
+        }
 
+        if(\Auth::user()->perm_admin or \Auth::user()->perm_calendar){
+            $data = Calendar::whereYear('start_date', now()->year)->orderBy('start_date')->get();
+        }else{
+            $data = Calendar::whereOnlyAdmins(1)->whereYear('start_date', $year)->orderBy('start_date')->get();
+        }
+
+        $first = Calendar::orderBy('start_date')->first();
+        $last = Calendar::orderBy('start_date', 'desc')->first();
+
+        return view('calendar.index', [
+            'year' => $year,
+            'data' => $data,
+            'first' => $first,
+            'last' => $last,
+        ]);
     }
 
     public function view($id){

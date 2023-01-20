@@ -26,7 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/calendar', 'App\Http\Controllers\CalendarController@index')->name('calendar.index');
+    Route::get('/calendar/year/{year}', 'App\Http\Controllers\CalendarController@index')->name('calendar.index');
     Route::get('/calendar/{id}', 'App\Http\Controllers\CalendarController@view')->name('calendar.view');
     Route::get('/calendar/edit/{id}', 'App\Http\Controllers\CalendarController@edit')->name('calendar.edit');
     Route::post('/calendar/store', 'App\Http\Controllers\CalendarController@store')->name('calendar.store');
