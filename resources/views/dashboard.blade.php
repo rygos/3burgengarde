@@ -12,7 +12,7 @@
                     Die nächsten 5 Termine
                     <div class="flow-root">
                         <ul role="list" class="divide-y">
-                            @foreach(\App\Models\Calendar::orderBy('start_date')->limit(5)->get() as $item)
+                            @foreach($calendar as $item)
                                 <li class="py-3 sm:py-4">
                                     <div class="flex items-center space-x-4">
                                         <div class="flex-shrink-0">

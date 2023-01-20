@@ -17,7 +17,7 @@ class CalendarController extends Controller
         if(\Auth::user()->perm_admin or \Auth::user()->perm_calendar){
             $data = Calendar::whereYear('start_date', now()->year)->orderBy('start_date')->get();
         }else{
-            $data = Calendar::whereOnlyAdmins(1)->whereYear('start_date', $year)->orderBy('start_date')->get();
+            $data = Calendar::whereOnlyAdmins(0)->whereYear('start_date', $year)->orderBy('start_date')->get();
         }
 
         $first = Calendar::orderBy('start_date')->first();
