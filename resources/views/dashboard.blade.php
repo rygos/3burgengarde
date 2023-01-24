@@ -18,6 +18,8 @@
                                         <div class="flex-shrink-0">
                                             @if($item->date_type == 'Alle')
                                                 <img class="w-8 h-8" src="/images/kg_wappen.png" alt="KG Wappen">
+                                            @elseif($item->date_type == '3BG')
+                                                <img class="w-8 h-8" src="/images/3bg_wappen.png" alt="3Burgengarde Wappen">
                                             @endif
 
                                         </div>

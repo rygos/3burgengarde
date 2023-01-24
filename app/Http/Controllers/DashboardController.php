@@ -9,9 +9,9 @@ class DashboardController extends Controller
 {
     public function index(){
         if(\Auth::user()->perm_admin or \Auth::user()->perm_calendar){
-            $data = Calendar::whereYear('start_date', '>=', now())->orderBy('start_date')->limit(5)->get();
+            $data = Calendar::whereDate('start_date', '>=', now())->orderBy('start_date')->limit(5)->get();
         }else{
-            $data = Calendar::whereOnlyAdmins(0)->whereYear('start_date', '>=', now())->orderBy('start_date')->limit(5)->get();
+            $data = Calendar::whereOnlyAdmins(0)->whereDate('start_date', '>=', now())->orderBy('start_date')->limit(5)->get();
         }
 
         return view('dashboard', [

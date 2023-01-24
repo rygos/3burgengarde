@@ -22,7 +22,9 @@
                                     <div class="flex items-center space-x-4">
                                         <div class="flex-shrink-0">
                                             @if($item->date_type == 'Alle')
-                                                <img class="w-8 h-8" src="/images/kg_wappen.png" alt="KG Wappen">
+                                                <img @if($item->start_date <= now()) style="filter: grayscale(100%)" @endif class="w-8 h-8" src="/images/kg_wappen.png" alt="KG Wappen">
+                                            @elseif($item->date_type == '3BG')
+                                                <img @if($item->start_date <= now()) style="filter: grayscale(100%)" @endif class="w-8 h-8" src="/images/3bg_wappen.png" alt="3Burgengarde Wappen">
                                             @endif
 
                                         </div>
@@ -33,13 +35,17 @@
                                             <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
                                                 {{ $item->start_date->format('d.m.Y H:i') }} Uhr
                                             </p>
-                                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                                {!! nl2br($item->description) !!}
-                                            </p>
-                                            @if($item->private_description)
-                                                <p class="text-sm text-red-500 truncate dark:text-red-400">
-                                                    Intern: {!! nl2br($item->private_description) !!}
+                                            @if($item->start_date >= now())
+                                                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                    {!! nl2br($item->description) !!}
                                                 </p>
+                                            @endif
+                                            @if($item->private_description)
+                                                @if($item->start_date >= now())
+                                                    <p class="text-sm text-red-500 truncate dark:text-red-400">
+                                                        Intern: {!! nl2br($item->private_description) !!}
+                                                    </p>
+                                                @endif
                                             @endif
                                             @php
                                                 $users = \App\Models\User::wherePermActivated(1)->get();
@@ -58,10 +64,12 @@
                                                     }
                                                 }
                                             @endphp
-                                            <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$count[1]}} - Ja</span>
-                                            <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">{{$count[0]}} - Nein</span>
-                                            <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$count[2]}} - Unklar</span>
-                                            <span class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">{{$count[3]}} - Keine Info</span>
+                                            @if($item->start_date >= now())
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">{{$count[1]}} - Ja</span>
+                                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">{{$count[0]}} - Nein</span>
+                                                <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-blue-900 dark:text-blue-300">{{$count[2]}} - Unklar</span>
+                                                <span class="bg-pink-100 text-pink-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-pink-900 dark:text-pink-300">{{$count[3]}} - Keine Info</span>
+                                            @endif
                                         </div>
 
                                         <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
