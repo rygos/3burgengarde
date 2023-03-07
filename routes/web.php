@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/profile/update_profile', [ProfileController::class, 'update_profile'])->name('profile.update_profile');
 
     Route::get('/calendar/add', 'App\Http\Controllers\CalendarController@add')->name('calendar.add');
     Route::get('/calendar/year/{year}', 'App\Http\Controllers\CalendarController@index')->name('calendar.index');
@@ -36,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/monthly_fee/pay/{user_id}/{year}/{month}')->name('monthly-fee.pay');
 
     Route::post('/set_commitment', [CommitmentController::class, 'set_commitment'])->name('set_commitment');
+
+    Route::get('/members', [\App\Http\Controllers\MemberController::class, 'index'])->name('members.index');
 });
 
 require __DIR__.'/auth.php';

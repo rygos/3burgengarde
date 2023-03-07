@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,22 @@ class ProfileController extends Controller
         }
 
         $request->user()->save();
+
+        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    }
+
+    public function update_profile(Request $request): RedirectResponse {
+        $user = Auth::user();
+
+        dd($request);
+
+        $user->adr_city = $request->get('adr_city');
+        $user->adr_street = $request->get('adr_street');
+        $user->adr_zip = $request->get('adr_zip');
+        $user->phone_mobile = $request->get('phone_mobile');
+        $user->phone_home = $request->get('phone_home');
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

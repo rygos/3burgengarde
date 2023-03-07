@@ -19,7 +19,4 @@ class MonthlyFeeController extends Controller
         ]);
     }
 
-    public function index_all(){
-
-    }
 }

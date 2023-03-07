@@ -21,6 +21,9 @@
                     <x-nav-link :href="route('monthly_fee.index')" :active="request()->routeIs('monthly_fee.index')">
                         {{ __('Beiträge') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('members.index')" :active="request()->routeIs('members.index')">
+                        {{ __('Mitglieder') }}
+                    </x-nav-link>
                 </div>
             </div>
 

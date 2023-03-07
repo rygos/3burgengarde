@@ -38,49 +38,49 @@
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                    Logo der 3Burgengarde
+                    <img style="width: 256px; display: block; margin-left: auto; margin-right: auto;" src="/images/3bg_wappen.png" alt="3Burgengarde Wappen">
                 </div>
+                <div class="py-12">
+                    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                        <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                            <div class="p-6 text-gray-900 dark:text-gray-100">
+                                <div class="flow-root">
+                                    <ul role="list" class="divide-y">
+                                        @foreach($calendar as $item)
+                                            <li class="py-3 sm:py-4">
+                                                <div class="flex items-center space-x-4">
+                                                    <div class="flex-shrink-0">
+                                                        @if($item->date_type == 'Alle')
+                                                            <img @if($item->start_date <= now()) style="filter: grayscale(100%)" @endif class="w-8 h-8" src="/images/kg_wappen.png" alt="KG Wappen">
+                                                        @elseif($item->date_type == '3BG')
+                                                            <img @if($item->start_date <= now()) style="filter: grayscale(100%)" @endif class="w-8 h-8" src="/images/3bg_wappen.png" alt="3Burgengarde Wappen">
+                                                        @endif
 
-                <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                    <div class="grid grid-cols-1 md:grid-cols-2">
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel.com/docs" class="underline text-gray-900 dark:text-white">News</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                                    </div>
+                                                    <div class="flex-1 min-w-0">
+                                                        <p class="font-medium text-gray-900 truncate dark:text-white">
+                                                            <a href="{{ route('calendar.view', $item->id) }}">{{ $item->title }}</a>
+                                                        </p>
+                                                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                                            {{ $item->start_date->format('d.m.Y H:i') }} Uhr
+                                                        </p>
+                                                        @if($item->start_date >= now())
+                                                            <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                                                {!! nl2br($item->description) !!}
+                                                            </p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="p-6">
-                            <div class="flex items-center">
-                                <div class="ml-4 text-lg leading-7 font-semibold"><a href="https://laravel-news.com/" class="underline text-gray-900 dark:text-white">Kalender</a></div>
-                            </div>
-
-                            <div class="ml-12">
-                                <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    Laravel News is a community driven portal and newsletter aggregating all of the latest and most important news in the Laravel ecosystem, including new package releases and tutorials.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-                            Die 3Burgengarde der KG Fidele Jonge Nörvenich 1932 e.V.
-                        </div>
-                    </div>
-
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        Version v{{ config('app.version') }} - Copyright by Marcel 'Hirring' Hering 2022 - {{ \Carbon\Carbon::now()->yearIso }}
                     </div>
                 </div>
             </div>
+
         </div>
     </body>
 </html>
