@@ -34,11 +34,13 @@
             <x-input-error class="mt-2" :messages="$errors->get('adr_city')" />
         </div>
 
+        {{--
         <div>
             <x-input-label for="adr_public" :value="__('Adresse nur sichtbar für Kommandantur')" />
             <x-toggle id="adr_public" name="adr_public" class="mt-1 block w-full" :value="old('adr_public', $user->adr_public)" />
             <x-input-error class="mt-2" :messages="$errors->get('adr_public')" />
         </div>
+        --}}
 
         <div>
             <x-input-label for="phone_home" :value="__('Festnetznummer')" />
@@ -52,24 +54,26 @@
             <x-input-error class="mt-2" :messages="$errors->get('phone_mobile')" />
         </div>
 
+        {{--
         <div>
             <x-input-label for="phone_public" :value="__('Telefonnummern nur sichtbar für Kommandantur')" />
             <x-toggle id="phone_public" name="phone_public" class="mt-1 block w-full" :value="old('phone_public', $user->phone_public)" />
             <x-input-error class="mt-2" :messages="$errors->get('phone_public')" />
         </div>
+        --}}
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Speichern') }}</x-primary-button>
+<div class="flex items-center gap-4">
+    <x-primary-button>{{ __('Speichern') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600 dark:text-gray-400"
-                >{{ __('Senden.') }}</p>
-            @endif
-        </div>
-    </form>
+    @if (session('status') === 'profile-updated')
+        <p
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition
+            x-init="setTimeout(() => show = false, 2000)"
+            class="text-sm text-gray-600 dark:text-gray-400"
+        >{{ __('Senden.') }}</p>
+    @endif
+</div>
+</form>
 </section>

@@ -41,8 +41,6 @@ class ProfileController extends Controller
     public function update_profile(Request $request): RedirectResponse {
         $user = Auth::user();
 
-        dd($request);
-
         $user->adr_city = $request->get('adr_city');
         $user->adr_street = $request->get('adr_street');
         $user->adr_zip = $request->get('adr_zip');

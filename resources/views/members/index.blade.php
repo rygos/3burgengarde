@@ -20,7 +20,9 @@
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Ort</th>
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Festnetz</th>
                                         <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Mobil</th>
-                                        <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Aktionen</th>
+                                        @if(Auth::user()->perm_admin == 1)
+                                            <th class="px-4 py-3 title-font tracking-wider font-medium text-white text-sm bg-gray-800">Aktionen</th>
+                                        @endif
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,7 +34,9 @@
                                         <td class="px-4 py-3">{{ $user->adr_zip }} {{ $user->adr_city }}</td>
                                         <td class="px-4 py-3">{{ $user->phone_home }}</td>
                                         <td class="px-4 py-3">{{ $user->phone_mobile }}</td>
-                                        <td class="px-4 py-3">Bearbeiten</td>
+                                        @if(Auth::user()->perm_admin == 1)
+                                            <td class="px-4 py-3">Bearbeiten</td>
+                                        @endif
                                     </tr>
                                 @endforeach
                                 </tbody>
