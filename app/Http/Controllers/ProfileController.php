@@ -96,6 +96,20 @@ class ProfileController extends Controller
         return \redirect()->route('members.index');
     }
 
+    public function admin_toggle_activation($userid){
+        if(Auth::user()->perm_admin == 1){
+            $user = User::whereId($userid)->first();
+            if($user->perm_activated == 0){
+                $user->perm_activated = 1;
+            }else{
+                $user->perm_activated = 0;
+            }
+            $user->save();
+        }
+
+        return \redirect()->route('members.index');
+    }
+
 }
 
 

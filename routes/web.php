@@ -27,6 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/update_profile', [ProfileController::class, 'update_profile'])->name('profile.update_profile');
     Route::get('/profile/admin_delete/{userid}', [ProfileController::class, 'admin_destroy'])->name('profile.admin_destroy');
     Route::post('/profile/admin_delete_post', [ProfileController::class, 'admin_destroy_post'])->name('profile.admin_destroy_post');
+    Route::post('/profile/admin_toggle_activation/{userid}', [ProfileController::class, 'admin_toggle_activation'])->name('profile.admin_toggle_activation');
 
     Route::get('/calendar/add', 'App\Http\Controllers\CalendarController@add')->name('calendar.add');
     Route::get('/calendar/year/{year}', 'App\Http\Controllers\CalendarController@index')->name('calendar.index');

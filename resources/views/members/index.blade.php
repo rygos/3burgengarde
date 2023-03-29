@@ -38,14 +38,14 @@
                                     <tr>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->name }}</td>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->beername }}</td>
-                                        <td class="px-4 py-3 {{ $color }}">{{ $user->birthdate }}</td>
+                                        <td class="px-4 py-3 {{ $color }}">{{ \Carbon\Carbon::parse($user->birthdate)->format('d.m.Y') }}</td>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->adr_street }}</td>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->adr_zip }} {{ $user->adr_city }}</td>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->phone_home }}</td>
                                         <td class="px-4 py-3 {{ $color }}">{{ $user->phone_mobile }}</td>
                                         @if(Auth::user()->perm_admin == 1)
                                             <td class="px-4 py-3">
-                                                <a href="">@if($user->perm_activated == 0)&#9989;@else&#10060;@endif</a><a href="">&#128221;</a><a href="{{ route('profile.admin_destroy', $user->id) }}">&#128465;</a>
+                                                <a href="{{ route('profile.admin_toggle_activation', $user->id) }}">@if($user->perm_activated == 0)&#9989;@else&#10060;@endif</a><a href="">&#128221;</a><a href="{{ route('profile.admin_destroy', $user->id) }}">&#128465;</a>
                                             </td>
                                         @endif
                                     </tr>
