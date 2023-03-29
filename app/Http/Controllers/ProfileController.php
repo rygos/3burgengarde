@@ -41,6 +41,8 @@ class ProfileController extends Controller
     public function update_profile(Request $request): RedirectResponse {
         $user = Auth::user();
 
+        $user->beername = $request->get('beername');
+        $user->birthdate = $request->get('birthdate');
         $user->adr_city = $request->get('adr_city');
         $user->adr_street = $request->get('adr_street');
         $user->adr_zip = $request->get('adr_zip');
@@ -49,7 +51,7 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit')->with('status', 'personal-profile-updated');
     }
 
     /**
@@ -72,4 +74,28 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function admin_destroy($userid){
+        if(Auth::user()->perm_admin == 1){
+            $user = User::whereId($userid)->first();
+            return view('profile.admin_delete',[
+                'user' => $user,
+            ]);
+        }else{
+            return \redirect('/');
+        }
+    }
+
+    public function admin_destroy_post(Request $request){
+        if(Auth::user()->perm_admin == 1){
+            if($request->get('delcheck') == 'DELETE'){
+                $user = User::whereId($request->get('userid'))->first();
+                $user->delete();
+            }
+        }
+        return \redirect()->route('members.index');
+    }
+
 }
+
+
